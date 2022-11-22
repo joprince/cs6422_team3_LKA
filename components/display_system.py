@@ -13,7 +13,7 @@ def display_vehicle_state(speed: int, lka_status: LkaStatus, lane_coordinates: L
     print(f"Vehicle LKA status = {lka_status}")
     print(f"Steering override status = {steer_override}")
     print(
-        f'Lane coordinates (from left of Sensor POV) \n\tLane 1={lane_coordinates.x1} units, Lane 2={lane_coordinates.x2} units')
+        f'Lane coordinates (from left of Sensor POV)\n\tLane 1={lane_coordinates.x1} units, Lane 2={lane_coordinates.x2} units')
 
 
 def display_alert(message: str):
