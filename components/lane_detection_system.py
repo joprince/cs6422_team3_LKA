@@ -6,3 +6,20 @@ def get_random_lane() -> LaneModel:
     random_lane_width = random.choices(population=[30, 40, 50, 60])[0]
     random_x2 = random_x1 + random_lane_width
     return LaneModel(random_x1, random_x2)
+    
+def get_lane_data(steer_wheel_direction: SteeringModel, current_lane_state: LaneModel, new_state: bool) -> LaneModel:
+    if new_state:
+        new_dir = random.choices(['right', 'left'])[0]
+        factor = random.randint(1, 6)
+        if new_dir == 'right':
+            return LaneModel(current_lane_state.x1 + factor, current_lane_state.x2 + factor)
+        else:
+            return LaneModel(current_lane_state.x1 - factor, current_lane_state.x2 - factor)
+    elif steer_wheel_direction.direction == SteerDirection.CENTER and steer_wheel_direction.angle == 0:
+        return current_lane_state
+    elif steer_wheel_direction.direction == SteerDirection.RIGHT:
+        steer_wheel_direction.horizontal_distance_centre -= 1
+        return LaneModel(int(current_lane_state.x1 - 1), int(current_lane_state.x2 - 1))
+    else:
+        steer_wheel_direction.horizontal_distance_centre -= 1
+        return LaneModel(int(current_lane_state.x1 + 1), int(current_lane_state.x2 + 1))

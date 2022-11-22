@@ -1,7 +1,3 @@
-from enums.enum_steering_override import SteeringOveride
-from enums.enum_lka_status import LkaStatus
-
-
 class LaneModel:
     def __init__(self, x1: int, x2: int) -> None:
         self.x1 = x1
