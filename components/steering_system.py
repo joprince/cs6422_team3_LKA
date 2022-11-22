@@ -1,6 +1,24 @@
-from enum_steer_direction import SteerDirection
+"""
+    File contains function that emulates the steering system
+"""
+
+import random
+
+from models.steering_model import SteeringModel
+from enums.enum_steering_override import SteeringOveride
 
 
-class SteeringSystem:
-    def steer_vehicle(self, angle: float, direction: SteerDirection):
-        print('Driver steers the vehicle towards %d by %f'.format(direction, angle))
+def get_random_steer_override() -> SteeringOveride:
+    """
+        Function return whether the steering system is overriden or not
+    """
+    return random.choices(
+        population=[SteeringOveride.YES, SteeringOveride.NO],
+        weights=[0.15, 0.85], k=1)[0]
+
+
+def steer_vehicle(curr_steering_state: SteeringModel):
+    """
+        Function prints the vehicle print status
+    """
+    print('Vehicle steers to - ', curr_steering_state)
