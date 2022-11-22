@@ -3,15 +3,18 @@ from models.steering_model import SteeringModel
 from enums.enum_steer_direction import SteerDirection
 import random
 
+
 def get_random_lane() -> LaneModel:
     random_x1 = random.randint(-10, 100)
     random_lane_width = random.choices(population=[30, 40, 50, 60])[0]
     random_x2 = random_x1 + random_lane_width
     return LaneModel(random_x1, random_x2)
 
+
 def get_lane_data(steer_wheel_direction: SteeringModel, current_lane_state: LaneModel, new_state: bool) -> LaneModel:
     if new_state:
-        new_dir = random.choices([SteerDirection.RIGHT, SteerDirection.LEFT])[0]
+        new_dir = random.choices(
+            [SteerDirection.RIGHT, SteerDirection.LEFT])[0]
         factor = random.randint(1, 5)
         if new_dir == SteerDirection.RIGHT:
             return LaneModel(current_lane_state.x1 + factor, current_lane_state.x2 + factor)
