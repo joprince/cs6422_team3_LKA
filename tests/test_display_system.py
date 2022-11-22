@@ -16,6 +16,6 @@ class TestDisplaySystem(unittest.TestCase):
                             LkaStatus.ON,
                             laneCoordinates,
                             SteeringOveride.NO)
-        print(sys.getsizeof(capturedOutput.getvalue))
         sys.stdout = sys.__stdout__
-        self.assertEquals(sys.getsizeof(capturedOutput.getvalue()),241)
+        self.assertIsNotNone(capturedOutput.getvalue())
+        self.assertEqual(sys.getsizeof(capturedOutput.getvalue()),238)
