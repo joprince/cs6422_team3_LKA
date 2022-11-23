@@ -1,7 +1,19 @@
+"""
+    File contains model class for steering model
+"""
+
 from enums.enum_steer_direction import SteerDirection
 
 class SteeringModel:
-    def __init__(self, direction: SteerDirection, steer_angle: float, distance_from_center: int) -> None:
+    """
+        Model class for steering model
+    """
+    def __init__(
+        self, direction: SteerDirection,
+        steer_angle: float, distance_from_center: int) -> None:
+        """
+            Constructor function
+        """
         self.direction = direction
         self.angle = steer_angle
         self.horizontal_distance_centre = distance_from_center

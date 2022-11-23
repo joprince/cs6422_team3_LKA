@@ -1,3 +1,7 @@
+"""
+        File contains functions that emulates ECU system
+"""
+
 from enums.enum_lka_status import LkaStatus
 import random
 

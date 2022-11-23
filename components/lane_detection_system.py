@@ -1,3 +1,7 @@
+"""
+    File contains functions that emulates lane detectio system
+"""
+
 from models.lane_model import LaneModel
 from models.steering_model import SteeringModel
 from enums.enum_steer_direction import SteerDirection

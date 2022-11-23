@@ -1,7 +1,7 @@
 """
     File contains tests for steering system
 """
-from unittest import TestCase, mock
+from unittest import TestCase
 
 
 from models.steering_model import SteeringModel
@@ -13,13 +13,6 @@ class TestSteeringSystem(TestCase):
     """
         Test cases for steering system
     """
-    @staticmethod
-    def mock_steering_override_no(**kwargs):
-        return [SteeringOveride.NO]
-
-    @staticmethod
-    def mock_steering_override_yes(**kwargs):
-        return [SteeringOveride.YES]
 
     def test_steer_vehicle(self):
         """
