@@ -1,6 +1,11 @@
+"""
+    File contains test cases of display system
+"""
+
 import io
 import sys
 import unittest
+
 from components.display_system import display_vehicle_state, display_alert
 from enums.enum_lka_status import LkaStatus
 from enums.enum_steering_override import SteeringOveride
@@ -26,7 +31,10 @@ class TestDisplaySystem(unittest.TestCase):
         sys.stdout = sys.__stdout__
         output = capturedOutput.getvalue()
 
-        expected = "Vehicle current speed = 10kmph\nVehicle LKA status = LkaStatus.ON\nSteering override status = SteeringOveride.NO\nLane coordinates (from left of Sensor POV)\n\tLane 1=35 units, Lane 2=75 units\n"
+        expected = "Vehicle current speed = 10kmph\nVehicle LKA status = "
+        expected += "LkaStatus.ON\nSteering override status = SteeringOveride.NO\n"
+        expected += "Lane coordinates (from left of Sensor POV)\n\tLane 1=35 units, "
+        expected += "Lane 2=75 units\n"
         self.assertEqual(output, expected)
 
     def test_display_alert(self):
@@ -34,13 +42,9 @@ class TestDisplaySystem(unittest.TestCase):
         This tests if the display_alert displays the correct output
         """
         expected = "Hello World"
-        capturedOutput = io.StringIO()
-        sys.stdout = capturedOutput
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
         display_alert(expected)
         sys.stdout = sys.__stdout__
-        output = capturedOutput.getvalue().strip()
+        output = captured_output.getvalue().strip()
         self.assertEqual(output, expected)
-
-
-if __name__ == '__main__':
-    unittest.main()

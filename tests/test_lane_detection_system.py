@@ -1,11 +1,11 @@
-import io
-import sys
+"""
+    File contains the test cases for lane detection
+"""
+
 import unittest
-from enums.enum_lka_status import LkaStatus
-from enums.enum_steering_override import SteeringOveride
+
 from enums.enum_steer_direction import SteerDirection
 from models.lane_model import LaneModel
-from models.data_model import DataModel
 from models.steering_model import SteeringModel
 from components.lane_detection_system import get_lane_data
 from models.lane_model import LaneModel
@@ -13,8 +13,12 @@ from components.lane_detection_system import get_random_lane
 
 
 class TestDisplaySystem(unittest.TestCase):
+    """
 
-    def test_get_lane_data(self):
+        Class containing the test cases for display system
+    """
+
+    def test_get_lane_data(self) -> None:
         """
         If
             the steer direction is CENTER
@@ -30,9 +34,12 @@ class TestDisplaySystem(unittest.TestCase):
         output = get_lane_data(steer_direction, current_lane, new_state)
         expected = current_lane
         self.assertEqual(output, expected)
-        self.assertEqual(steer_direction.horizontal_distance_centre, steer_direction.horizontal_distance_centre)
+        self.assertEqual(
+            steer_direction.horizontal_distance_centre,
+            steer_direction.horizontal_distance_centre
+        )
 
-    def test_get_lane_data_steerright(self):
+    def test_get_lane_data_steerright(self) -> None:
         """
         If
             the steer direction is RIGHT
@@ -51,7 +58,7 @@ class TestDisplaySystem(unittest.TestCase):
         self.assertEqual(output.x2, expected.x2)
         self.assertEqual(steer_direction.horizontal_distance_centre, 0)
 
-    def test_get_lane_data_turnleft(self):
+    def test_get_lane_data_turnleft(self) -> None:
         """
         If
             the steer direction is LEFT
@@ -70,7 +77,7 @@ class TestDisplaySystem(unittest.TestCase):
         self.assertEqual(output.x2, expected.x2)
         self.assertEqual(steer_direction.horizontal_distance_centre, 0)
 
-    def test_get_lane_data_newstate(self):
+    def test_get_lane_data_newstate(self) -> None:
         """
         If
             new state is requested
@@ -85,7 +92,7 @@ class TestDisplaySystem(unittest.TestCase):
         self.assertNotEqual(output.x1, current_lane.x1)
         self.assertNotEqual(output.x2, current_lane.x2)
 
-    def test_get_lane_data_newstate_units(self):
+    def test_get_lane_data_newstate_units(self) -> None:
         """
         If
             new state is requested
@@ -103,15 +110,20 @@ class TestDisplaySystem(unittest.TestCase):
         self.assertLessEqual(lane1_diff, 5)
         self.assertLessEqual(lane2_diff, 5)
 
-    def test_lane_model(self):
+    def test_lane_model(self) -> None:
+        """
+            Test case for lane model class
+        """
         lanemodel = LaneModel(
-            35,
-            75
+            35, 75
         )
         self.assertEqual(lanemodel.__str__(), "x1: 35, x2: 75")
 
-    def test_get_random_lane(self):
-        lane_state = get_random_lane();
+    def test_get_random_lane(self) -> None:
+        """
+            Twest case for get_random_lane  function
+        """
+        lane_state = get_random_lane()
         self.assertIn(lane_state.x1, range(-10, 100))
         self.assertIn(lane_state.x2, range(-10, 160))
         width_list = [30, 40, 50, 60]

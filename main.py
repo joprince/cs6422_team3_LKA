@@ -1,4 +1,4 @@
-from components.steering_system import steer_vehicle, get_random_steer_override
+from components.steering_system import get_random_steer_override
 from components.lane_detection_system import get_lane_data, get_random_lane
 from components.ecu import get_random_lka_status, get_random_speed
 from models.lane_model import LaneModel
@@ -12,7 +12,9 @@ import time
 
 
 def main():
-    # Initial steering and lane state
+    """
+        Main Function
+    """
     curr_steering_state = SteeringModel(SteerDirection.CENTER, 0, 0)
     curr_lane_state = get_random_lane()
     force_ctr = 0
@@ -35,7 +37,9 @@ def main():
                 if lka_status == LkaStatus.OFF:
                     alert_user('\nLane keep assist is turned off')
                 else:
-                    if curr_lane_state.x2 < curr_lane_state.x1 or curr_lane_state.x1 < 0 or curr_lane_state.x2 < 0 or curr_lane_state.x1 > 100 or curr_lane_state.x2 > 100:
+                    if curr_lane_state.x2 < curr_lane_state.x1 or \
+                        curr_lane_state.x1 < 0 or curr_lane_state.x2 < 0 or \
+                            curr_lane_state.x1 > 100 or curr_lane_state.x2 > 100:
                         alert_user('\nInvalid lane coordinates')
                         curr_lane_state = get_random_lane()
                     else:
