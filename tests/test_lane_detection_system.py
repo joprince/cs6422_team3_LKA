@@ -9,19 +9,19 @@ from models.data_model import DataModel
 from models.steering_model import SteeringModel
 from components.lane_detection_system import get_lane_data
 from models.lane_model import LaneModel
-import components.lane_detection_system
+from components.lane_detection_system import get_random_lane
 
 
 class TestDisplaySystem(unittest.TestCase):
 
     def test_get_lane_data(self):
         """
-        If 
+        If
             the steer direction is CENTER
             new state is NOT requested
-        then 
+        then
             lane coordinates should return the same
-            horizontal distance of steering model should remain the same       
+            horizontal distance of steering model should remain the same
         """
         current_lane = LaneModel(25, 75)
         steer_direction = SteeringModel(SteerDirection.CENTER, 0, 0)
@@ -34,10 +34,10 @@ class TestDisplaySystem(unittest.TestCase):
 
     def test_get_lane_data_steerright(self):
         """
-        If 
+        If
             the steer direction is RIGHT
             new state is NOT requested
-        then 
+        then
             lane coordinates should reduce by 1 unit
             horizontal distance of steering model should reduce by 1 unit
         """
@@ -53,10 +53,10 @@ class TestDisplaySystem(unittest.TestCase):
 
     def test_get_lane_data_turnleft(self):
         """
-        If 
+        If
             the steer direction is LEFT
             new state is NOT requested
-        then 
+        then
             lane coordinates should increase by 1 unit
             horizontal distance of steering model should reduce by 1 unit
         """
@@ -72,9 +72,9 @@ class TestDisplaySystem(unittest.TestCase):
 
     def test_get_lane_data_newstate(self):
         """
-        If 
+        If
             new state is requested
-        then 
+        then
             New lane coordinates should be generated
         """
         current_lane = LaneModel(25, 75)
@@ -87,9 +87,9 @@ class TestDisplaySystem(unittest.TestCase):
 
     def test_get_lane_data_newstate_units(self):
         """
-        If 
+        If
             new state is requested
-        then 
+        then
             New lane coordinates should be generated
             and the difference should not exceed 5 units
         """
@@ -111,7 +111,7 @@ class TestDisplaySystem(unittest.TestCase):
         self.assertEqual(lanemodel.__str__(), "x1: 35, x2: 75")
 
     def test_get_random_lane(self):
-        lane_state = components.lane_detection_system.get_random_lane();
+        lane_state = get_random_lane();
         self.assertIn(lane_state.x1, range(-10, 100))
         self.assertIn(lane_state.x2, range(-10, 160))
         width_list = [30, 40, 50, 60]
