@@ -3,6 +3,7 @@
 """
 
 import unittest
+from unittest import mock
 
 from components.ecu import get_random_lka_status,get_random_speed
 from enums.enum_lka_status import LkaStatus
@@ -17,11 +18,18 @@ class TestECU(unittest.TestCase):
         """
         status = get_random_lka_status()
         self.assertIn(status, [LkaStatus.ON, LkaStatus.OFF])
-
-    def test_speed_range(self):
+        
+    def test_speed_range(self,choice_mock):
         """
             Test for function randomizing vehicle speed
         """
-        speed = get_random_speed(20)
+        speed = get_random_speed(1)
         self.assertGreater(speed,0)
-        self.assertLess(speed,131)
+
+        speed = get_random_speed(121)
+        self.assertLess(speed,125)
+
+        speed = get_random_speed(50)
+        self.assertLess(speed,125)
+        self.assertGreater(speed,0)
+
