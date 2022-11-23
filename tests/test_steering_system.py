@@ -33,7 +33,7 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "Vehicle steers to -  direction: SteerDirection.LEFT, angle: 25\n"
+        expected = "\nLane Keep Assist steers vehicle to SteerDirection.LEFT by 25 degrees\n"
         captured_output = io.StringIO()
         sys.stdout = captured_output
         steer_vehicle(steering_model)
@@ -51,7 +51,7 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "Vehicle steers to -  direction: SteerDirection.RIGHT, angle: 25\n"
+        expected = "\nLane Keep Assist steers vehicle to SteerDirection.RIGHT by 25 degrees\n"
         captured_output = io.StringIO()
         sys.stdout = captured_output
         steer_vehicle(steering_model)
@@ -69,7 +69,7 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "Vehicle steers to -  direction: SteerDirection.CENTER, angle: 25\n"
+        expected = "\nVehicle is in the center of the lane\n"
         captured_output = io.StringIO()
         sys.stdout = captured_output
         steer_vehicle(steering_model)
