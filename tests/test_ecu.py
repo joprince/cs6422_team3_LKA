@@ -22,6 +22,6 @@ class TestECU(unittest.TestCase):
         """
             Test for function randomizing vehicle speed
         """
-        speed = get_random_speed()
+        speed = get_random_speed(20)
         self.assertGreater(speed,0)
         self.assertLess(speed,131)
