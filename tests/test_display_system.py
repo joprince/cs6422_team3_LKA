@@ -33,8 +33,8 @@ class TestDisplaySystem(unittest.TestCase):
 
         expected = "Vehicle current speed = 10kmph\nVehicle LKA status = "
         expected += "LkaStatus.ON\nSteering override status = SteeringOveride.NO\n"
-        expected += "Lane coordinates (from left of Sensor POV)\n\tLane 1=35 units, "
-        expected += "Lane 2=75 units\n"
+        expected += "Lane coordinates (from left of Sensor POV)\n\tLane 1 = 35 units, "
+        expected += "Lane 2 = 75 units\n"
         self.assertEqual(output, expected)
 
     def test_display_alert(self):

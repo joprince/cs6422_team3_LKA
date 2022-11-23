@@ -18,24 +18,25 @@ def main():
     curr_steering_state = SteeringModel(SteerDirection.CENTER, 0, 0)
     curr_lane_state = get_random_lane()
     force_ctr = 0
+    speed = 0
 
     while(True):
         steer_override = get_random_steer_override()
-        speed = get_random_speed()
+        speed = get_random_speed(speed)
         lka_status = get_random_lka_status()
 
         display_vehicle_state(
             speed, lka_status, curr_lane_state, steer_override)
 
         if steer_override == SteeringOveride.YES:
-            alert_user('\nUser is steering the vehicle manually')
+            alert_user('\nDriver is steering the vehicle manually')
         else:
             if speed < 5 or speed > 120:
                 alert_user(
-                    '\nLane keep assist does not work in the current the speed')
+                    '\nLane Keep Assist does not work in the current the speed')
             else:
                 if lka_status == LkaStatus.OFF:
-                    alert_user('\nLane keep assist is turned off')
+                    alert_user('\nLane Keep Assist is turned off')
                 else:
                     if curr_lane_state.x2 < curr_lane_state.x1 or \
                         curr_lane_state.x1 < 0 or curr_lane_state.x2 < 0 or \
