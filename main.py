@@ -8,6 +8,8 @@ from enums.enum_steering_override import SteeringOveride
 from enums.enum_lka_status import LkaStatus
 from components.display_system import display_vehicle_state
 from components.alert_system import alert_user
+from components.lane_keep_assist import calculate_steer_angle
+from components.steering_system import steer_vehicle
 import time
 
 
@@ -50,12 +52,16 @@ def main():
                         if force_ctr >= 1:
                             force_ctr = 0
 
-                        # TODO - Calculate steer angle
-                        print('\nTODO - Calculate steer angle')
+                        curr_steering_state = calculate_steer_angle(
+                            curr_lane_state)
+                        steer_vehicle(curr_steering_state)
+
+                        if curr_steering_state.direction == SteerDirection.CENTER:
+                            force_ctr += 1
 
                         # TODO - Alerts
         print('-----------')
-        time.sleep(1)
+        time.sleep(2.5)
 
 
 if __name__ == "__main__":
