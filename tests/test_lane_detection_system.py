@@ -12,7 +12,7 @@ from models.lane_model import LaneModel
 from components.lane_detection_system import get_random_lane
 
 
-class TestDisplaySystem(unittest.TestCase):
+class TestLaneDetectionSystem(unittest.TestCase):
     """
 
         Class containing the test cases for display system
