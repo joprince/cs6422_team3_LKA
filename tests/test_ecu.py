@@ -19,7 +19,7 @@ class TestECU(unittest.TestCase):
         status = get_random_lka_status()
         self.assertIn(status, [LkaStatus.ON, LkaStatus.OFF])
         
-    def test_speed_range(self,choice_mock):
+    def test_speed_range(self):
         """
             Test for function randomizing vehicle speed
         """
