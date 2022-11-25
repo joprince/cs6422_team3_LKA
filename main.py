@@ -46,22 +46,22 @@ def main():
                         alert_user('\nInvalid lane coordinates')
                         curr_lane_state = get_random_lane()
                     else:
-                        curr_lane_state = get_lane_data(
-                            curr_steering_state, curr_lane_state, force_ctr >= 1)
-
-                        if force_ctr >= 1:
-                            force_ctr = 0
-
                         curr_steering_state = calculate_steer_angle(
                             curr_lane_state)
                         steer_vehicle(curr_steering_state)
 
+                        if force_ctr >= 1:
+                            force_ctr = 0
+
                         if curr_steering_state.direction == SteerDirection.CENTER:
                             force_ctr += 1
 
+                        curr_lane_state = get_lane_data(
+                            curr_steering_state, curr_lane_state, force_ctr >= 1)
+
                         # TODO - Alerts
-        print('-----------')
-        time.sleep(2.5)
+        print('=====================================================================')
+        time.sleep(3.5)
 
 
 if __name__ == "__main__":
