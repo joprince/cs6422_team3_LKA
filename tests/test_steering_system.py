@@ -76,3 +76,16 @@ class TestSteeringSystem(TestCase):
         sys.stdout = sys.__stdout__
         output = captured_output.getvalue()
         self.assertEqual(output, expected)
+
+    def test_steering_model(self):
+        """
+            Test case for steering model
+        """
+        steering_model = SteeringModel(
+            SteerDirection.CENTER,
+            25,
+            50
+        )
+        expected = "direction: SteerDirection.CENTER, angle: 25"
+        output = steering_model.__str__()
+        self.assertEqual(output, expected)
