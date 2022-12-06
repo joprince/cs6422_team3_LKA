@@ -22,7 +22,7 @@ def display_vehicle_state(speed: int, lka_status: LkaStatus, lane_coordinates: L
     print(f"Steering override status = {steer_override}")
     print(
         f'Lane coordinates (from left of Sensor POV)\n\tLane 1 = {lane_coordinates.x1} units, Lane 2 = {lane_coordinates.x2} units')
-
+    #display_lane(lane_coordinates: LaneModel)
 
 def display_alert(message: str):
     """
@@ -76,3 +76,35 @@ def display_status_message(message: str):
     output += '*' * 54
 
     return output
+def display_lane(lane_coordinates: LaneModel)->str:
+        
+    # Calculations to get the cars position on the lane
+    midcar = (lane_coordinates.x2 + lane_coordinates.x1)/2
+    unitstomove = midcar - 50
+    consTabSpace = " "*25
+    endTabSpace = " "*24
+    
+    # Printing the lane co-ordinates
+    finalLane = "\n"+str(lane_coordinates.x1).zfill(2)+consTabSpace+'|'+consTabSpace+str(lane_coordinates.x2).zfill(2)
+    finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
+    finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
+    
+    # Printing the position of the car on the lane
+    if (unitstomove) > 0:
+        nextTabStop = int(abs((abs(unitstomove)-26)))
+        tabs = str(" "*int(nextTabStop))
+        finalLane += "\n"+' '*nextTabStop + '=#='
+        return finalLane
+    elif unitstomove < 0:
+        nextTabStop = int(abs(unitstomove)+26)
+        tabs = str(" "*int(nextTabStop))
+        finalLane += "\n"+' '*nextTabStop + '=#='
+        return finalLane
+    elif unitstomove == 0:
+        finalLane += "\n"+' *'+endTabSpace+'=#='+endTabSpace+'*'
+        return finalLane
+
+
+     
+
+    
