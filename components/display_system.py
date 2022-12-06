@@ -29,5 +29,5 @@ def display_alert(message: str):
     print(message)
 
 def display_status(lka_status: LkaStatus,steer_override: SteeringOveride) -> str:
-    msg = "LKA STATUS ({lka_status}) \n STEERING OVERRIDE  ({steer_override}"
-    return msg;
+    msg = "LKA STATUS ({lka_status}) \nSTEERING OVERRIDE  ({steer_override})"
+    return msg
