@@ -25,4 +25,4 @@ def steer_vehicle(curr_steering_state: SteeringModel):
     if curr_steering_state.direction == SteerDirection.CENTER:
         return 'Vehicle is in the center of the lane'
     else:
-        return f"Lane Keep Assist steers vehicle to {curr_steering_state.direction} by {curr_steering_state.angle} degrees"
+        return f"Lane Keep Assist steers vehicle to {curr_steering_state.direction.name} by {curr_steering_state.angle} degrees"
