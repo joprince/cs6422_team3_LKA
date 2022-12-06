@@ -2,6 +2,7 @@
     File contains functions that emulates display sytem
 """
 
+
 from enums.enum_lka_status import LkaStatus
 from enums.enum_steer_direction import SteerDirection
 from enums.enum_steering_override import SteeringOveride
@@ -30,13 +31,6 @@ def display_alert(message: str):
     on a diplay unit such as LCD, Heads-Up-Display.
     """
     print(message)
-
-<<<<<<< HEAD
-
-def display_status(lka_status: LkaStatus, steer_override: SteeringOveride) -> str:
-    msg = "LKA STATUS ({lka_status}) \nSTEERING OVERRIDE  ({steer_override})"
-    return msg
-
 
 def display_speed(speed: int):
     display_speed_part1 = f'Vehicle Speed '
@@ -105,11 +99,6 @@ def display_lane(lane_coordinates: LaneModel)->str:
         finalLane += "\n"+' *'+endTabSpace+'=#='+endTabSpace+'*'
         return finalLane
 
-
-     
-
-    
-=======
 def display_LKA_status(lka_status: LkaStatus) -> str:
     msg = "LKA STATUS ({lka_status})"
     return msg
@@ -117,4 +106,3 @@ def display_LKA_status(lka_status: LkaStatus) -> str:
 def display_steering_override_status(steer_override: SteeringOveride) -> str:
     msg = "STEERING OVERRIDE  ({steer_override})"
     return msg
->>>>>>> f9e2861 (Update : Output Visualisation)
