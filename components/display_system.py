@@ -8,6 +8,7 @@ from enums.enum_steer_direction import SteerDirection
 from enums.enum_steering_override import SteeringOveride
 from models.lane_model import LaneModel
 import math
+import sys
 
 
 def display_vehicle_state(speed: int, lka_status: LkaStatus, lane_coordinates: LaneModel,
@@ -21,7 +22,8 @@ def display_vehicle_state(speed: int, lka_status: LkaStatus, lane_coordinates: L
     print(display_status_message(message))
     print(
         f'Lane coordinates (from left of Sensor POV)\n\tLane 1 = {lane_coordinates.x1} units, Lane 2 = {lane_coordinates.x2} units')
-    #display_lane(lane_coordinates: LaneModel)
+    # display_lane(lane_coordinates: LaneModel)
+
 
 def display_alert(message: str):
     """
@@ -29,6 +31,7 @@ def display_alert(message: str):
     on a diplay unit such as LCD, Heads-Up-Display.
     """
     print(message)
+
 
 def display_speed(speed: int):
     display_speed_part1 = f'Vehicle Speed '
@@ -70,16 +73,18 @@ def display_status_message(message: str):
 
     return output
 
-def display_lane(lane_coordinates: LaneModel)-> str:
-        
+
+def display_lane(lane_coordinates: LaneModel) -> str:
+
     # Calculations to get the cars position on the lane
     midcar = (lane_coordinates.x2 + lane_coordinates.x1)/2
     unitstomove = midcar - 50
     consTabSpace = " "*25
     endTabSpace = " "*24
-    
+
     # Printing the lane co-ordinates
-    finalLane = "\n"+str(lane_coordinates.x1).zfill(2)+consTabSpace+'|'+consTabSpace+str(lane_coordinates.x2).zfill(2)
+    finalLane = "\n"+str(lane_coordinates.x1).zfill(2)+consTabSpace + \
+        '|'+consTabSpace+str(lane_coordinates.x2).zfill(2)
     finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
     finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
     finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
@@ -101,10 +106,17 @@ def display_lane(lane_coordinates: LaneModel)-> str:
         finalLane += "\n"+' *'+endTabSpace+'=#='+endTabSpace+'*'
         return finalLane
 
+
 def display_LKA_status(lka_status: LkaStatus) -> str:
     msg = "LKA STATUS ({lka_status})"
     return msg
 
+
 def display_steering_override_status(steer_override: SteeringOveride) -> str:
     msg = "STEERING OVERRIDE  ({steer_override})"
     return msg
+
+
+def print_there(x, y, text):
+    sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (x, y, text))
+    sys.stdout.flush()

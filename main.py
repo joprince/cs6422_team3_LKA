@@ -6,7 +6,7 @@ from models.steering_model import SteeringModel
 from enums.enum_steer_direction import SteerDirection
 from enums.enum_steering_override import SteeringOveride
 from enums.enum_lka_status import LkaStatus
-from components.display_system import display_vehicle_state, display_speed, display_status, display_status_message
+from components.display_system import display_vehicle_state, display_speed, display_status, display_status_message, display_lane, print_there
 from components.alert_system import alert_user
 from components.lane_keep_assist import calculate_steer_angle
 from components.steering_system import steer_vehicle
@@ -27,7 +27,8 @@ def main():
         speed = get_random_speed(speed)
         lka_status = get_random_lka_status()
 
-        print(display_speed(speed))
+        print_there(10, 20,
+                    f'{display_speed(speed)}\t\t{display_lane(curr_lane_state)}')
 
         if steer_override == SteeringOveride.YES:
             display_status_message('\nDriver is steering the vehicle manually')
@@ -58,8 +59,7 @@ def main():
                         curr_lane_state = get_lane_data(
                             curr_steering_state, curr_lane_state, force_ctr >= 1)
 
-        print('=====================================================================')
-        time.sleep(1)
+        time.sleep(3.5)
 
 
 if __name__ == "__main__":
