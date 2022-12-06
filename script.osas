@@ -1,0 +1,24 @@
+#!/usr/bin/osascript
+on run argv
+    tell application "terminal"
+        set currentTab to do script "cd " & (item 1 of argv)
+        do script "source venv/bin/activate" in currentTab
+        delay 1
+        do script "rm output1.txt" in currentTab
+        do script "rm output2.txt" in currentTab
+        delay 1
+        do script "chmod +x print.sh" in currentTab
+        do script "python3 test.py" in currentTab
+    end tell
+    tell application "terminal"
+        set currentTab to do script "cd " & (item 1 of argv)
+        do script "clear" in currentTab
+        do script " sh print.sh" in currentTab
+        activate currentTab
+    end tell
+    tell application "terminal"
+        set currentTab to do script "cd " & (item 1 of argv)
+        do script "clear" in currentTab
+        do script "tail -F output2.txt" in currentTab
+    end tell
+end run
