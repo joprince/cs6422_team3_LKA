@@ -100,9 +100,9 @@ def display_lane(lane_coordinates: LaneModel)->str:
         return finalLane
 
 def display_LKA_status(lka_status: LkaStatus) -> str:
-    msg = "LKA STATUS ({lka_status})"
+    msg = "LKA STATUS ({lka_status.name})"
     return msg
 
 def display_steering_override_status(steer_override: SteeringOveride) -> str:
-    msg = "STEERING OVERRIDE  ({steer_override})"
+    msg = "STEERING OVERRIDE  ({steer_override.name})"
     return msg
