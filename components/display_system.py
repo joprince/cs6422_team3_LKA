@@ -84,10 +84,7 @@ def display_lane(lane_coordinates: LaneModel)-> str:
     finalLane = "\n"+str(lane_coordinates.x1).zfill(2)+consTabSpace+'|'+consTabSpace+str(lane_coordinates.x2).zfill(2)
     finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
     finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
-    finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
-    finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
-    finalLane += "\n"+' *'+consTabSpace+'|'+consTabSpace+'*'
-
+    
     # Printing the position of the car on the lane
     if (unitstomove) > 0:
         nextTabStop = int(abs((abs(unitstomove)-26)))
