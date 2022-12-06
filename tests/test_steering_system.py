@@ -11,6 +11,7 @@ from enums.enum_steer_direction import SteerDirection
 from enums.enum_steering_override import SteeringOveride
 from components.steering_system import get_random_steer_override, steer_vehicle
 
+
 class TestSteeringSystem(TestCase):
     """
         Test cases for steering system
@@ -21,7 +22,8 @@ class TestSteeringSystem(TestCase):
             Test for get_random_steer_override
         """
         override_status = get_random_steer_override()
-        self.assertIn(override_status, [SteeringOveride.YES, SteeringOveride.NO])
+        self.assertIn(override_status, [
+                      SteeringOveride.YES, SteeringOveride.NO])
 
     def test_steer_system_left(self):
         """
@@ -33,12 +35,8 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "\nLane Keep Assist steers vehicle to SteerDirection.LEFT by 25 degrees\n"
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-        steer_vehicle(steering_model)
-        sys.stdout = sys.__stdout__
-        output = captured_output.getvalue()
+        expected = "Lane Keep Assist steers vehicle to SteerDirection.LEFT by 25 degrees"
+        output = steer_vehicle(steering_model)
         self.assertEqual(output, expected)
 
     def test_steer_system_right(self):
@@ -51,12 +49,8 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "\nLane Keep Assist steers vehicle to SteerDirection.RIGHT by 25 degrees\n"
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-        steer_vehicle(steering_model)
-        sys.stdout = sys.__stdout__
-        output = captured_output.getvalue()
+        expected = "Lane Keep Assist steers vehicle to SteerDirection.RIGHT by 25 degrees"
+        output = steer_vehicle(steering_model)
         self.assertEqual(output, expected)
 
     def test_steer_system_center(self):
@@ -69,12 +63,8 @@ class TestSteeringSystem(TestCase):
             50
         )
 
-        expected = "\nVehicle is in the center of the lane\n"
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-        steer_vehicle(steering_model)
-        sys.stdout = sys.__stdout__
-        output = captured_output.getvalue()
+        expected = "Vehicle is in the center of the lane"
+        output = steer_vehicle(steering_model)
         self.assertEqual(output, expected)
 
     def test_steering_model(self):
