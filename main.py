@@ -6,7 +6,7 @@ from models.steering_model import SteeringModel
 from enums.enum_steer_direction import SteerDirection
 from enums.enum_steering_override import SteeringOveride
 from enums.enum_lka_status import LkaStatus
-from components.display_system import display_vehicle_state
+from components.display_system import display_vehicle_state, display_speed, display_status, display_status_message
 from components.alert_system import alert_user
 from components.lane_keep_assist import calculate_steer_angle
 from components.steering_system import steer_vehicle
@@ -27,23 +27,22 @@ def main():
         speed = get_random_speed(speed)
         lka_status = get_random_lka_status()
 
-        display_vehicle_state(
-            speed, lka_status, curr_lane_state, steer_override)
+        print(display_speed(speed))
 
         if steer_override == SteeringOveride.YES:
-            alert_user('\nDriver is steering the vehicle manually')
+            display_status_message('\nDriver is steering the vehicle manually')
         else:
             if speed < 5 or speed > 120:
-                alert_user(
+                display_status_message(
                     '\nLane Keep Assist does not work in the current the speed')
             else:
                 if lka_status == LkaStatus.OFF:
-                    alert_user('\nLane Keep Assist is turned off')
+                    display_status_message('\nLane Keep Assist is turned off')
                 else:
                     if curr_lane_state.x2 < curr_lane_state.x1 or \
                         curr_lane_state.x1 < 0 or curr_lane_state.x2 < 0 or \
                             curr_lane_state.x1 > 100 or curr_lane_state.x2 > 100:
-                        alert_user('\nInvalid lane coordinates')
+                        display_status_message('\nInvalid lane coordinates')
                         curr_lane_state = get_random_lane()
                     else:
                         curr_steering_state = calculate_steer_angle(
@@ -59,7 +58,6 @@ def main():
                         curr_lane_state = get_lane_data(
                             curr_steering_state, curr_lane_state, force_ctr >= 1)
 
-                        # TODO - Alerts
         print('=====================================================================')
         time.sleep(1)
 

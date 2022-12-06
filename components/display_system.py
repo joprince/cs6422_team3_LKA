@@ -16,11 +16,9 @@ def display_vehicle_state(speed: int, lka_status: LkaStatus, lane_coordinates: L
     This functions displays the vehicle state to the user
     on a diplay unit such as LCD, Heads-Up-Display.
     """
-    # print(f"Vehicle current speed = {speed}kmph")
-    display_string = display_speed(speed)
-    print(display_string)
-    print(f"Vehicle LKA status = {lka_status}")
-    print(f"Steering override status = {steer_override}")
+    print(display_speed(speed))
+    print(display_status(lka_status, steer_override))
+    print(display_status_message(message))
     print(
         f'Lane coordinates (from left of Sensor POV)\n\tLane 1 = {lane_coordinates.x1} units, Lane 2 = {lane_coordinates.x2} units')
     #display_lane(lane_coordinates: LaneModel)
