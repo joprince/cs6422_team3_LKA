@@ -31,6 +31,7 @@ def display_alert(message: str):
     """
     print(message)
 
+<<<<<<< HEAD
 
 def display_status(lka_status: LkaStatus, steer_override: SteeringOveride) -> str:
     msg = "LKA STATUS ({lka_status}) \nSTEERING OVERRIDE  ({steer_override})"
@@ -108,3 +109,12 @@ def display_lane(lane_coordinates: LaneModel)->str:
      
 
     
+=======
+def display_LKA_status(lka_status: LkaStatus) -> str:
+    msg = "LKA STATUS ({lka_status})"
+    return msg
+
+def display_steering_override_status(lka_status: LkaStatus) -> str:
+    msg = "STEERING OVERRIDE  ({steer_override})"
+    return msg
+>>>>>>> f9e2861 (Update : Output Visualisation)
