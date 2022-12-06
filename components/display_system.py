@@ -27,3 +27,7 @@ def display_alert(message: str):
     on a diplay unit such as LCD, Heads-Up-Display.
     """
     print(message)
+
+def display_status(lka_status: LkaStatus,steer_override: SteeringOveride) -> str:
+    msg = "LKA STATUS ({lka_status}) \nSTEERING OVERRIDE  ({steer_override})"
+    return msg
