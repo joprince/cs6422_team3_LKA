@@ -114,7 +114,7 @@ def display_LKA_status(lka_status: LkaStatus) -> str:
     msg = "LKA STATUS ({lka_status})"
     return msg
 
-def display_steering_override_status(lka_status: LkaStatus) -> str:
+def display_steering_override_status(steer_override: SteeringOveride) -> str:
     msg = "STEERING OVERRIDE  ({steer_override})"
     return msg
 >>>>>>> f9e2861 (Update : Output Visualisation)
